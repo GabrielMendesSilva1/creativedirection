@@ -4,8 +4,162 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfólio da Creative Direction</title>
-    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* CSS aqui */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Estilos para o header */
+        header {
+            background-color: #6a0dad;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 36px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        /* Estilos para as seções */
+        section {
+            padding: 50px 0;
+        }
+
+        section h2 {
+            margin-bottom: 20px;
+            color: #6a0dad;
+            text-align: center;
+        }
+
+        /* Estilos para os serviços */
+        .servicos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .servico {
+            text-align: center;
+            padding: 30px;
+            border-radius: 10px;
+            background-color: #f8f9fa;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .servico i {
+            font-size: 48px;
+            color: #6a0dad;
+        }
+
+        .servico h3 {
+            margin: 20px 0;
+            color: #6a0dad;
+        }
+
+        .servico p {
+            color: #666;
+        }
+
+        .servico:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Estilos para a galeria */
+        .gallery {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .gallery img {
+            max-width: 30%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Estilos para o formulário de contato */
+        .contact-form {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-form h2 {
+            color: #6a0dad;
+            margin-bottom: 10px;
+        }
+
+        .contact-form p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .contact-form .form-group {
+            margin-bottom: 20px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .contact-form button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #6a0dad;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .contact-form button:hover {
+            background-color: #4a086b;
+        }
+
+        /* Estilos para o footer */
+        footer {
+            background-color: #6a0dad;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -107,6 +261,61 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        // JavaScript aqui
+        document.addEventListener('DOMContentLoaded', function() {
+            // Inicializa o Swiper.js para o carrossel de serviços
+            var swiper = new Swiper('.swiper-container', {
+                slidesPerView: 'auto',
+                spaceBetween: 20,
+                loop: true,
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+            });
+
+            // Adiciona o listener de evento para o formulário de contato
+            const form = document.getElementById("contact-form");
+            form.addEventListener("submit", function(event) {
+                event.preventDefault();
+                const nome = document.getElementById("nome").value;
+                const email = document.getElementById("email").value;
+                const mensagem = document.getElementById("mensagem").value;
+
+                // Verifica se os campos estão preenchidos
+                if (nome === '' || email === '' || mensagem === '') {
+                    alert("Por favor, preencha todos os campos do formulário.");
+                    return false;
+                }
+
+                // Verifica o formato do e-mail usando uma expressão regular simples
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    alert("Por favor, insira um endereço de e-mail válido.");
+                    return false;
+                }
+
+                // Se todas as verificações passarem, o formulário é enviado
+                this.submit();
+            });
+
+            // Adiciona o listener de evento para a rolagem suave para âncoras
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+
+                    // Scroll suave para o destino
+                    if (target) {
+                        window.scrollTo({
+                            top: target.offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
